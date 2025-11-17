@@ -1,8 +1,10 @@
 package com.example.local_storage_learning;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -33,6 +35,8 @@ public class datastore_learning extends AppCompatActivity {
 
 
         btn_back_to_mainActivity = new Button(this);
+        btn_back_to_mainActivity.setId(View.generateViewId());
+        btn_back_to_mainActivity.setOnClickListener(new my_ClickListener());
         btn_back_to_mainActivity.setText("back to main activity");
         btn_back_to_mainActivity.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -44,5 +48,15 @@ public class datastore_learning extends AppCompatActivity {
         container.addView(topContent);
         container.addView(btn_back_to_mainActivity);
         setContentView(container);
+    }
+
+    private class my_ClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == btn_back_to_mainActivity.getId()){
+                Intent intent = new Intent(datastore_learning.this, MainActivity.class);
+                startActivity(intent);
+            }
+        }
     }
 }
